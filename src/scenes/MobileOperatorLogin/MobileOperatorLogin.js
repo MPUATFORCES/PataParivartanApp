@@ -1,16 +1,16 @@
 import React, { useState } from 'react'
 import { Image, SafeAreaView, StyleSheet, View, TextInput, TouchableOpacity, Text } from 'react-native'
+import { useSelector, useDispatch } from 'react-redux';
+
+import { login } from '../../actions/MOAuth';
 
 import { YELLOW, WHITE, RED } from '../../utils/Colors'
 
-const MobileOperatorLogin = ({ isSignedIn, navigation }) => {
+const MobileOperatorLogin = ({ navigation }) => {
+    const dispatch = useDispatch()
+
     const [username, onUsernameChange] = useState();
     const [password, onPasswordChange] = useState();
-
-    const onLogin = () => {
-        isSignedIn = true
-        return isSignedIn
-    }
 
     const checkInput = () => {
         if (!username) {
@@ -23,9 +23,14 @@ const MobileOperatorLogin = ({ isSignedIn, navigation }) => {
             return;
         }
         //Checked Successfully
-        //Do whatever you want
-        alert('Success');
+        dispatch(login({ username, password }))
     };
+
+    const onLoginPress = () => {
+        checkInput()
+    }
+
+
     return (
         <SafeAreaView style={styles.container}>
             <Image
@@ -47,7 +52,7 @@ const MobileOperatorLogin = ({ isSignedIn, navigation }) => {
                     placeholder="Password"
                 />
                 <TouchableOpacity
-                    onPress={() => checkInput}
+                    onPress={() => onLoginPress()}
                     style={styles.button}
                 >
                     <Text

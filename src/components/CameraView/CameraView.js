@@ -4,7 +4,7 @@ import { Camera } from 'expo-camera';
 import { YELLOW, WHITE, RED } from '../../utils/Colors'
 
 
-const CameraView = ({ naivgation }) => {
+const CameraView = ({ navigation }) => {
     const cameraRef = useRef();
     const [hasPermission, setHasPermission] = useState(null);
     const [type, setType] = useState(Camera.Constants.Type.back);
@@ -30,7 +30,7 @@ const CameraView = ({ naivgation }) => {
         if (cameraRef) {
             cameraRef.current.takePictureAsync()
                 .then((photo) => {
-                    console.log(photo.uri)
+                    navigation.navigate("Edit Image", uri = photo.uri)
                 })
                 .catch((e) => {
                     console.log(e)
@@ -38,6 +38,8 @@ const CameraView = ({ naivgation }) => {
 
         }
     };
+
+
     return (
         <View style={styles.container}>
             <View style={styles.centeredView}>
@@ -86,9 +88,6 @@ const CameraView = ({ naivgation }) => {
                                 <Image
                                     source={require('../../../assets/images/icons/capture.png')}
                                     style={styles.captureIcon}
-                                    onPress={() => {
-
-                                    }}
                                 />
                             </Pressable>
                         </View>

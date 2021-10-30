@@ -1,0 +1,11 @@
+export const AUTH_LOGGING_IN = '[AUTH] LOGGING_IN';
+export const AUTH_LOGGED_IN = '[AUTH] LOGGED_IN';
+export const AUTH_ERR_LOG_IN = '[AUTH] ERR_LOG_IN';
+export const AUTH_LOGOUT = '[AUTH] LOGOUT';
+export const AUTH_CLEAR_LOGIN_ERROR_MESSAGE = '[AUTH] CLEAR_LOGIN_ERROR_MESSAGE';
+export const MO_FETCH_PENDING = 'MO_FETCH_PENDING';
+export const MO_FETCH_SUCCESS = 'MO_FETCH_SUCCESS';
+export const MO_FETCH_ERROR = 'MO_FETCH_ERROR';
+export const OTP_SUCCESS = 'OTP_SUCCESS';
+export const OTP_PENDING = 'OTP_PENDING';
+export const OTP_ERROR = 'OTP_ERROR';

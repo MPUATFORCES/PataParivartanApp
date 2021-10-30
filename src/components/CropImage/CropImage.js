@@ -1,49 +1,34 @@
-import React, { Component } from 'react';
-import { Platform } from 'react-native';
-import * as FileSystem from 'expo-file-system';
-import { Actions } from 'react-native-router-flux';
-import ImageCropper from 'react-native-advance-image-cropper';;
+import { View, Text } from 'react-native'
+import React, { useRef, useState } from 'react'
+import { ImageCrop } from 'react-native-image-cropper'
 
-class CropImage extends Component {
+const CropImage = ({ uri }) => {
+    const cropperRef = useRef();
+    const [height, setHeight] = useState()
+    const [width, setWidth] = useState()
+    const [zoom, setZoom] = useState()
 
-    onDone = (croppedImageUri) => {
-
-        console.log('croppedImageUri = ', croppedImageUri);
-
-        if (Platform.OS === 'ios') {
-            ImageStore.getBase64ForTag(
-                croppedImageUri,
-                (base64Image) => {
-                    // send image to server or save it locally
-                    ImageStore.removeImageForTag(croppedImageUri);
-                },
-                (err) => { }
-            );
-        }
-        else {
-
-            // send image to server
-        }
-        // navigate to the next page of your application
-        Actions.home();
+    const capture = () => {
+        cropperRef.current.crop()
+            .then(base64 => console.log(base64))
     }
-
-    onCancel = () => {
-        // navigate back
-        Actions.pop();
-    }
-
-    render() {
-        return (
-            <ImageCropper
-                onDone={this.onDone}
-                onCancel={this.onCancel}
-                imageUri='https://www.lifeofpix.com/wp-content/uploads/2018/09/manhattan_-11-1600x2396.jpg'
-                imageWidth={1600}
-                imageHeight={2396}
-                NOT_SELECTED_AREA_OPACITY={0.3}
-                BORDER_WIDTH={20}
+    return (
+        <View>
+            <ImageCrop
+                ref={cropperRef}
+                image={uri}
+                cropHeight={height}
+                cropWidth={width}
+                zoom={zoom}
+                maxZoom={80}
+                minZoom={20}
+                panToMove={true}
+                pinchToZoom={true}
             />
-        );
-    }
+            <Text onPress={capture()}>Done</Text>
+        </View>
+
+    )
 }
+
+export default CropImage

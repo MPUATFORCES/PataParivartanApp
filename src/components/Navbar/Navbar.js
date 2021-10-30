@@ -30,7 +30,7 @@ const Navbar = () => {
     return (
         <View style={styles.container}>
             <Text style={styles.headerText}>
-                PATA PARIVARITAN
+                PATA PARIVARTAN
             </Text>
         </View>
     )
