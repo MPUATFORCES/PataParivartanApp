@@ -3,7 +3,7 @@ import { StyleSheet } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
-import HomeScreen from './src/components/';
+import HomeScreen from './src/scenes/Home/HomeScreen';
 import SelectProofOfAddress from './src/scenes/SelectProofOfAddress/SelectProofOfAddress';
 import EditAddress from './src/scenes/EditAddress/EditAddress';
 import MobileOperatorLogin from './src/scenes/MobileOperatorLogin/MobileOperatorLogin';
