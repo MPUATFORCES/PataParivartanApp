@@ -2,8 +2,11 @@ import React, { useState } from 'react';
 import { StyleSheet } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import HomeScreen from './src/scenes/Home/HomeScreen';
+import SelectProofOfAddress from './src/scenes/SelectProofOfAddress/SelectProofOfAddress';
+import EditAddress from './src/scenes/EditAddress/EditAddress';
 import MobileOperatorLogin from './src/scenes/MobileOperatorLogin/MobileOperatorLogin';
 import CustomerLogin from './src/scenes/CustomerLogin/CustomerLogin';
 
@@ -25,14 +28,24 @@ const App = () => {
         <Stack.Navigator>
           <Stack.Screen
             options={{ headerLargeTitle: true }}
+            name="Customer Login"
+            component={CustomerLogin}
+          />
+          <Stack.Screen
+            options={{ headerLargeTitle: true }}
             name="Home"
             component={HomeScreen}
           />
 
           <Stack.Screen
             options={{ headerLargeTitle: true }}
-            name="Customer Login"
-            component={CustomerLogin}
+            name="Update Address"
+            component={SelectProofOfAddress}
+          />
+          <Stack.Screen
+            options={{ headerLargeTitle: true }}
+            name="Edit Address"
+            component={EditAddress}
           />
 
         </Stack.Navigator>
