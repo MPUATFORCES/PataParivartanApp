@@ -4,7 +4,7 @@ import { Camera } from 'expo-camera';
 import { YELLOW, WHITE, RED } from '../../utils/Colors'
 
 
-const CameraView = () => {
+const CameraView = ({ naivgation }) => {
     const cameraRef = useRef();
     const [hasPermission, setHasPermission] = useState(null);
     const [type, setType] = useState(Camera.Constants.Type.back);
@@ -86,6 +86,9 @@ const CameraView = () => {
                                 <Image
                                     source={require('../../../assets/images/icons/capture.png')}
                                     style={styles.captureIcon}
+                                    onPress={() => {
+
+                                    }}
                                 />
                             </Pressable>
                         </View>

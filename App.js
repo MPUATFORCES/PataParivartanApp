@@ -25,11 +25,11 @@ const App = () => {
     <NavigationContainer>
       {isMOSignedIn ? (
         <Stack.Navigator>
-          <Stack.Screen
+          {/* <Stack.Screen
             options={{ headerLargeTitle: true }}
             name="Customer Login"
             component={CustomerLogin}
-          />
+          /> */}
           <Stack.Screen
             options={{ headerLargeTitle: true }}
             name="Home"

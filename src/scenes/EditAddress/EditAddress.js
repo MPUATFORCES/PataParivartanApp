@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
     },
 });
 
-const EditAddress = () => {
+const EditAddress = ({ navigation }) => {
     const [text, onChangeText] = useState("Useless Text");
 
     return (
@@ -27,7 +27,7 @@ const EditAddress = () => {
                 onChangeText={onChangeText}
                 value={text}
             />
-            <EditAddressModal />
+            <EditAddressModal navigation={navigation} />
         </SafeAreaView>
     )
 }

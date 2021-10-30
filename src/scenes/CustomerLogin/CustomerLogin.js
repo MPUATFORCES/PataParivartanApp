@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react"
 import { View, StyleSheet, TextInput, TouchableOpacity, Text } from 'react-native'
 
 
-import OTPService from "../../services/OTPService/OTPService"
+// import OTPService from "../../services/OTPService/OTPService"
 import { YELLOW, WHITE, RED } from '../../utils/Colors'
 
 

@@ -38,7 +38,7 @@ const HomeScreen = ({ navigation }) => {
         <SafeAreaView style={styles.container}>
             <Navbar />
             <TouchableOpacity
-                onPress={() => navigation.navigate("Customer Login")}
+                onPress={() => navigation.navigate("Update Address")}
                 style={styles.button}
             >
                 <Text

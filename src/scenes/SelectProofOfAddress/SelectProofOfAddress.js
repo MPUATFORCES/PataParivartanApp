@@ -75,7 +75,7 @@ const SelectProofOfAddress = ({ navigation }) => {
                     <DropDown />
                 </View>
                 <View style={styles.containerTwo}>
-                    <CameraView />
+                    <CameraView navigation={navigation} />
                 </View>
             </View>
             {/* <TouchableOpacity

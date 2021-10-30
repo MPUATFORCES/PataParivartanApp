@@ -8,7 +8,7 @@ const OTPService = (props) => {
     }
 
     axios.post(url, config)
-
+        // res - txnId, ret: "y" or "n"
         .then((res) => console.log(res))
 
         .catch((e) => console.log(e))
