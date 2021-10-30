@@ -2,9 +2,8 @@ import React, { useState } from 'react';
 import { StyleSheet } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
-import HomeScreen from './src/scenes/Home/HomeScreen';
+import HomeScreen from './src/components/';
 import SelectProofOfAddress from './src/scenes/SelectProofOfAddress/SelectProofOfAddress';
 import EditAddress from './src/scenes/EditAddress/EditAddress';
 import MobileOperatorLogin from './src/scenes/MobileOperatorLogin/MobileOperatorLogin';
