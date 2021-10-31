@@ -1,7 +1,7 @@
 import { createStore, applyMiddleware, combineReducers } from 'redux';
 import thunk from 'redux-thunk';
 import { createLogger } from 'redux-logger';
-import MOAuth from './reducers/MOAuth';
+import MOAuth from '../reducers/MOAuth';
 
 const appReducers = combineReducers({
     MOAuth,

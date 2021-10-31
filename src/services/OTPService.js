@@ -2,14 +2,14 @@ import axios from 'axios'
 
 const OTPService = (props) => {
 
-    url = 'http://127.0.0.1/otp'
+    url = 'http://20.204.96.107/otp'
     config = {
         "uid": props.uid
     }
 
     axios.post(url, config)
         // res - txnId, ret: "y" or "n"
-        .then((res) => console.log(res))
+        .then((res) => res)
 
         .catch((e) => console.log(e))
 }

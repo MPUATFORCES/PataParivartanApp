@@ -3,6 +3,7 @@ import {
     AUTH_LOGGED_IN,
     AUTH_ERR_LOG_IN,
     AUTH_LOGOUT,
+    AUTH_LOG_IN,
     AUTH_CLEAR_LOGIN_ERROR_MESSAGE,
 } from '../constants/Auth';
 
@@ -33,9 +34,11 @@ export const loggedOut = () => ({
 });
 
 export const logout = () => async (dispatch, getState) => {
-    await userService.logout(getState).then((res) => {
-        dispatch(loggedOut());
-    }).catch((err) => { });
+    await userService.logout(getState)
+        .then((res) => {
+            dispatch(loggedOut());
+        })
+        .catch((err) => { });
 };
 
 export const login = (username, password) => (dispatch) => {

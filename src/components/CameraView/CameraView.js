@@ -2,13 +2,22 @@ import React, { useRef, useState, useEffect } from 'react'
 import { StyleSheet, Text, View, TouchableOpacity, Alert, Modal, Pressable, Image } from 'react-native';
 import { Camera } from 'expo-camera';
 import { YELLOW, WHITE, RED } from '../../utils/Colors'
+import ExtractText from '../../services/ExtractText';
 
-
-const CameraView = ({ navigation }) => {
+const CameraView = ({ isItemSelected }) => {
     const cameraRef = useRef();
     const [hasPermission, setHasPermission] = useState(null);
     const [type, setType] = useState(Camera.Constants.Type.back);
     const [modalVisible, setModalVisible] = useState(false);
+
+    const onNextPress = () => {
+        if (isItemSelected) {
+            setModalVisible(true)
+        }
+        else {
+            alert('Select an item')
+        }
+    }
 
     useEffect(() => {
         const camera = cameraRef.current;
@@ -30,7 +39,7 @@ const CameraView = ({ navigation }) => {
         if (cameraRef) {
             cameraRef.current.takePictureAsync()
                 .then((photo) => {
-                    navigation.navigate("Edit Image", uri = photo.uri)
+                    ExtractText(photo.uri)
                 })
                 .catch((e) => {
                     console.log(e)
@@ -95,7 +104,7 @@ const CameraView = ({ navigation }) => {
                 </Modal>
                 <Pressable
                     style={[styles.button, styles.buttonOpen]}
-                    onPress={() => setModalVisible(true)}
+                    onPress={() => onNextPress()}
                 >
                     <Text style={styles.textStyle}>Next</Text>
                 </Pressable>
@@ -170,8 +179,8 @@ const styles = StyleSheet.create({
         elevation: 5
     },
     button: {
-        borderRadius: 20,
-        padding: 10,
+        borderRadius: 5,
+        padding: 8,
         elevation: 2
     },
     buttonOpen: {
@@ -184,7 +193,7 @@ const styles = StyleSheet.create({
         color: "white",
         fontWeight: "bold",
         textAlign: "center",
-        fontSize: 15
+        fontSize: 16
     },
     modalText: {
         marginBottom: 15,

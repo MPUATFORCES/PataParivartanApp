@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { View, Image, StyleSheet, Text } from 'react-native'
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import CameraView from '../../components/CameraView/CameraView';
@@ -61,6 +61,12 @@ const styles = StyleSheet.create({
 });
 
 const SelectProofOfAddress = ({ navigation }) => {
+    const [isItemSelected, setItemSelected] = useState(false)
+
+    const SetItemSelected = () => {
+        setItemSelected(true)
+    }
+
     return (
         <View style={styles.containerOuter}>
             <Image
@@ -72,26 +78,12 @@ const SelectProofOfAddress = ({ navigation }) => {
                     <Text style={styles.headerText}>
                         Type of Proof
                     </Text>
-                    <DropDown />
+                    <DropDown isItemSelected={isItemSelected} SetItemSelected={SetItemSelected} />
                 </View>
                 <View style={styles.containerTwo}>
-                    <CameraView navigation={navigation} />
+                    <CameraView navigation={navigation} isItemSelected={isItemSelected} />
                 </View>
             </View>
-            {/* <TouchableOpacity
-                onPress={() => navigation.navigate("Edit Address")}
-                style={styles.button}
-            >
-                <Text
-                    style=
-                    {
-                        {
-                            color: WHITE
-                        }
-                    }>
-                    Edit Address
-                </Text>
-            </TouchableOpacity> */}
         </View>
     )
 }

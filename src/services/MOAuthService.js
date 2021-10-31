@@ -10,7 +10,13 @@ const MOAuthService = (username, password) => {
         "password": password,
     }
 
-    axios.post(url, config)
+
+    axios.post('http://127.0.0.1:5000', config, {
+        headers: {
+            'accept': 'application/json',
+            'Content-Type': `application/json`,
+        }
+    })
         // res - status: "y"/"n" , errCode: null/errorcode 
         .then((res) => console.log(res))
 

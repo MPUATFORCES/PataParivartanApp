@@ -2,6 +2,7 @@ import {
     AUTH_CLEAR_LOGIN_ERROR_MESSAGE,
     AUTH_ERR_LOG_IN,
     AUTH_LOGGED_IN,
+    AUTH_LOG_IN,
     AUTH_LOGGING_IN,
     AUTH_LOGOUT,
 } from '../constants/Auth';

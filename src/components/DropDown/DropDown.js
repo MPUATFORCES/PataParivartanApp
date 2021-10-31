@@ -8,8 +8,13 @@ const styles = StyleSheet.create({
     }
 });
 
-const DropDown = () => {
+const DropDown = ({ SetItemSelected }) => {
     const [selectedItems, setItems] = useState([]);
+
+    const onItemSelected = (item) => {
+        setItems(item)
+        SetItemSelected()
+    }
 
     var items = [
         {
@@ -31,7 +36,7 @@ const DropDown = () => {
             <SearchableDropdown
                 onTextChange={(text) => console.log(text)}
                 onItemSelect={(item) => {
-                    setItems(item)
+                    onItemSelected(item)
                 }}
                 containerStyle={{
                     padding: 5

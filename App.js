@@ -3,15 +3,15 @@ import { StyleSheet } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { Provider } from 'react-redux';
-import { store } from './src/Store';
+import { store } from './src/store/Store';
 import { useDispatch, useSelector } from 'react-redux';
 
 import HomeScreen from './src/scenes/Home/HomeScreen';
 import SelectProofOfAddress from './src/scenes/SelectProofOfAddress/SelectProofOfAddress';
-import EditAddress from './src/scenes/EditAddress/EditAddress';
 import MobileOperatorLogin from './src/scenes/MobileOperatorLogin/MobileOperatorLogin';
 import CustomerLogin from './src/scenes/CustomerLogin/CustomerLogin';
-import EditImage from './src/scenes/EditImage/EditImage';
+// import EditImage from './src/scenes/EditImage/EditImage';
+import EditAddress from './src/scenes/EditAddress/EditAddress';
 
 const styles = StyleSheet.create({
   container: {
@@ -34,17 +34,17 @@ const App = () => {
       <NavigationContainer>
         {isMOSignedIn ? (
           <Stack.Navigator>
-            {/* <Stack.Screen
-            options={{ headerLargeTitle: true }}
-            name="Customer Login"
-            component={CustomerLogin}
-          /> */}
             <Stack.Screen
               options={{ headerLargeTitle: true }}
               name="Home"
               component={HomeScreen}
             />
 
+            <Stack.Screen
+              options={{ headerLargeTitle: true }}
+              name="Customer Login"
+              component={CustomerLogin}
+            />
             <Stack.Screen
               options={{ headerLargeTitle: true }}
               name="Update Address"
@@ -55,12 +55,6 @@ const App = () => {
               name="Edit Address"
               component={EditAddress}
             />
-            <Stack.Screen
-              options={{ headerLargeTitle: true }}
-              name="Edit Image"
-              component={EditImage}
-            />
-
           </Stack.Navigator>
         ) : (
           <Stack.Navigator>
@@ -69,6 +63,7 @@ const App = () => {
               component={MobileOperatorLogin}
               initialParams={isMOSignedIn} />
           </Stack.Navigator>
+
         )}
       </NavigationContainer>
     </Provider>

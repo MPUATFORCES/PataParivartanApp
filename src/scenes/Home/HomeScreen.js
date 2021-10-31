@@ -3,7 +3,8 @@ import {
     Text,
     StyleSheet,
     SafeAreaView,
-    TouchableOpacity
+    TouchableOpacity,
+    Image
 } from 'react-native'
 
 import Navbar from '../../components/Navbar/Navbar';
@@ -16,6 +17,11 @@ const styles = StyleSheet.create({
         display: 'flex',
         alignItems: 'center',
 
+    },
+    image: {
+        height: 100,
+        width: 150,
+        marginTop: 96
     },
     button: {
         backgroundColor: RED,
@@ -37,8 +43,12 @@ const HomeScreen = ({ navigation }) => {
     return (
         <SafeAreaView style={styles.container}>
             <Navbar />
+            <Image
+                source={require('../../../assets/images/logo/logo.png')}
+                style={styles.image}
+            />
             <TouchableOpacity
-                onPress={() => navigation.navigate("Update Address")}
+                onPress={() => navigation.navigate("Customer Login")}
                 style={styles.button}
             >
                 <Text
@@ -51,6 +61,7 @@ const HomeScreen = ({ navigation }) => {
                     Update Address
                 </Text>
             </TouchableOpacity>
+
         </SafeAreaView>
     )
 }
