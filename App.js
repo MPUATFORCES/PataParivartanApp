@@ -25,6 +25,9 @@ const App = () => {
   console.log('App Executed')
 
   const [isMOSignedIn, setMOSignIn] = useState(true)
+  const MOSignIn = () => {
+    setMOSignIn(true)
+  }
   // const [isCustomerSignedIn, setCustomerSignIn] = useState(true)
 
   // const isMOSignedIn = navigation.state.params.isLoggedIn
@@ -36,24 +39,24 @@ const App = () => {
           <Stack.Navigator>
             <Stack.Screen
               options={{ headerLargeTitle: true }}
+              name="Customer Login"
+              component={CustomerLogin}
+            />
+            <Stack.Screen
+              options={{ headerLargeTitle: true }}
+              name="Edit Address"
+              component={EditAddress}
+            />
+            <Stack.Screen
+              options={{ headerLargeTitle: true }}
               name="Home"
               component={HomeScreen}
             />
 
             <Stack.Screen
               options={{ headerLargeTitle: true }}
-              name="Customer Login"
-              component={CustomerLogin}
-            />
-            <Stack.Screen
-              options={{ headerLargeTitle: true }}
               name="Update Address"
               component={SelectProofOfAddress}
-            />
-            <Stack.Screen
-              options={{ headerLargeTitle: true }}
-              name="Edit Address"
-              component={EditAddress}
             />
           </Stack.Navigator>
         ) : (

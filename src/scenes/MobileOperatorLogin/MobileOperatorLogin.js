@@ -1,16 +1,19 @@
 import React, { useState } from 'react'
 import { Image, SafeAreaView, StyleSheet, View, TextInput, TouchableOpacity, Text } from 'react-native'
-import { useSelector, useDispatch } from 'react-redux';
+// import { useSelector, useDispatch } from 'react-redux';
 
-import { login } from '../../actions/MOAuth';
+// import { login } from '../../actions/MOAuth';
 
+import Loader from '../../utils/Spinners'
+import MOAuthService from '../../services/MOAuthService'
 import { YELLOW, WHITE, RED } from '../../utils/Colors'
 
-const MobileOperatorLogin = ({ navigation }) => {
-    const dispatch = useDispatch()
-
+const MobileOperatorLogin = ({ navigation, MOSignIn }) => {
+    // const dispatch = useDispatch()
+    const auth = false
     const [username, onUsernameChange] = useState();
     const [password, onPasswordChange] = useState();
+    const [isLoginClicked, setLoginClicked] = useState(false)
 
     const checkInput = () => {
         if (!username) {
@@ -23,8 +26,22 @@ const MobileOperatorLogin = ({ navigation }) => {
             return;
         }
         //Checked Successfully
-        dispatch(login({ username, password }))
+        Login()
     };
+    async function Login() {
+        setLoginClicked(true)
+        auth = await MOAuthService(username, password, auth)
+        console.log(auth)
+        if (auth) {
+            setLoginClicked(false)
+            MOSignIn()
+        }
+        else {
+            alert("Wrong username and password")
+            setLoginClicked(false)
+        }
+
+    }
 
     const onLoginPress = () => {
         checkInput()
@@ -55,15 +72,18 @@ const MobileOperatorLogin = ({ navigation }) => {
                     onPress={() => onLoginPress()}
                     style={styles.button}
                 >
-                    <Text
-                        style=
-                        {
+                    {isLoginClicked ? <Loader /> : (
+                        <Text
+                            style=
                             {
-                                color: WHITE
-                            }
-                        }>
-                        Login
-                    </Text>
+                                {
+                                    color: WHITE
+                                }
+                            }>
+                            Login
+                        </Text>
+                    )}
+
                 </TouchableOpacity>
             </View>
         </SafeAreaView>

@@ -2,18 +2,49 @@ import React, { useState, useEffect } from "react"
 import { View, StyleSheet, TextInput, TouchableOpacity, Text, Image } from 'react-native'
 import Loader from "../../utils/Spinners"
 
-import OTPService from "../../services/OTPService"
+import axios from "axios"
+
+// import OTPService from "../../services/OTPService"
 import { YELLOW, WHITE, RED } from '../../utils/Colors'
 
 
 const CustomerLogin = () => {
+
     const [uidno, onUIDNoChange] = useState();
     const [otp, onOTPChange] = useState();
     const [isLoading, setLoading] = useState(false);
-    const [isOTPSent, onOTPSent] = useState(false);
+    const [isOTPSent, onOTPSent] = useState(true);
 
-    const sendOTP = () => {
-        OTPService(uidno)
+    async function sendOTP(uid) {
+        otpconfig = {
+            "uid": uid
+        }
+        res = axios.post('http://20.204.96.107/otp', otpconfig)
+            // res - {
+            //     "status": "y",
+            //     "errCode": null
+            //    }
+            .then((res) => console.log(res))
+            .catch((e) => console.log(e))
+        return res.data["status"]
+    }
+
+    async function sendAuth(uid, txnId, otp) {
+        authconfig = {
+            "uid": uid,
+            "txnId": txnId,
+            "otp": otp
+        }
+
+        res = axios.post('http://20.204.96.107/authenticate', authconfig)
+            // res - {
+            //     "status": "y",
+            //     "errCode": null
+            //    }
+            .then((res) => console.log(res))
+            .catch((e) => console.log(e))
+        return res.data["status"]
+
     }
 
     const checkUIDInput = () => {
@@ -22,7 +53,7 @@ const CustomerLogin = () => {
         }
         else {
             setLoading(true)
-            sendOTP()
+            sendOTP(uidno)
         }
     }
 

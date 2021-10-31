@@ -1,27 +1,27 @@
 import axios from 'axios';
 // import AsyncStorage from '@react-native-community/async-storage';
-const API_URL = 'http://20.204.96.107'
 
-const MOAuthService = (username, password) => {
+const MOAuthService = async (username, password, auth) => {
+    console.log('MOAUTHService run')
 
-    url = API_URL
-    config = {
-        "username": username,
-        "password": password,
+    const config = {
+        username: `${username}`,
+        password: `${password}`,
     }
+    console.log(config)
 
-
-    axios.post('http://127.0.0.1:5000', config, {
-        headers: {
-            'accept': 'application/json',
-            'Content-Type': `application/json`,
-        }
-    })
+    res = axios.post('http://20.204.96.107/moauth', config)
         // res - status: "y"/"n" , errCode: null/errorcode 
-        .then((res) => console.log(res))
+        .then((res) => {
+            console.log(res.data['auth'])
+            auth = res.data['auth']
+        })
 
         .catch((e) => console.log(e))
+    return auth;
 }
+export default MOAuthService
+
 // const AuthService = () => {
 
 //     url = API_URL
@@ -38,7 +38,6 @@ const MOAuthService = (username, password) => {
 //         .catch((e) => console.log(e))
 // }
 
-export default MOAuthService
 // function login(username, password) {
 //     return new Promise((resolve, reject) => {
 //         axios.post(`${API_URL}/moauth`, {
