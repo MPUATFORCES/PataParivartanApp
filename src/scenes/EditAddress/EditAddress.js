@@ -26,7 +26,7 @@ const EditAddress = ({ navigation }) => {
     }
 
     const onConfirmPress = () => {
-        checkInput()
+        alert('Done')
     }
 
     const checkInput = () => {
@@ -141,6 +141,16 @@ const EditAddress = ({ navigation }) => {
 
                     />
                 </View>
+                <View style={styles.columns}>
+                    <Text style={styles.text}>PIN</Text>
+                    <TextInput
+                        style={styles.input}
+                        onChangeText={onChangeText}
+                        value="110034"
+                        placeholder="Enter your Pin"
+
+                    />
+                </View>
                 <Pressable
                     style={[styles.button, styles.buttonOpen]}
                     onPress={() => onConfirmPress()}
@@ -175,7 +185,7 @@ const styles = StyleSheet.create({
     },
     input: {
         height: 50,
-        margin: 9,
+        margin: 6,
         borderWidth: 1,
         padding: 14,
         borderColor: 'transparent',

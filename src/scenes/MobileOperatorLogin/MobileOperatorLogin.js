@@ -1,15 +1,11 @@
 import React, { useState } from 'react'
 import { Image, SafeAreaView, StyleSheet, View, TextInput, TouchableOpacity, Text } from 'react-native'
-// import { useSelector, useDispatch } from 'react-redux';
-
-// import { login } from '../../actions/MOAuth';
 
 import Loader from '../../utils/Spinners'
 import MOAuthService from '../../services/MOAuthService'
 import { YELLOW, WHITE, RED } from '../../utils/Colors'
 
 const MobileOperatorLogin = ({ navigation, MOSignIn }) => {
-    // const dispatch = useDispatch()
     const auth = false
     const [username, onUsernameChange] = useState();
     const [password, onPasswordChange] = useState();
@@ -32,6 +28,7 @@ const MobileOperatorLogin = ({ navigation, MOSignIn }) => {
         setLoginClicked(true)
         auth = await MOAuthService(username, password, auth)
         console.log(auth)
+
         if (auth) {
             setLoginClicked(false)
             MOSignIn()
@@ -40,13 +37,12 @@ const MobileOperatorLogin = ({ navigation, MOSignIn }) => {
             alert("Wrong username and password")
             setLoginClicked(false)
         }
-
     }
 
     const onLoginPress = () => {
-        checkInput()
+        // checkInput()
+        navigation.navigate()
     }
-
 
     return (
         <SafeAreaView style={styles.container}>
@@ -91,6 +87,8 @@ const MobileOperatorLogin = ({ navigation, MOSignIn }) => {
 }
 
 export default MobileOperatorLogin
+
+
 
 const styles = StyleSheet.create({
     container: {

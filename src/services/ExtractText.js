@@ -1,24 +1,29 @@
 import axios from 'axios';
-import FormData from 'form-data'
-// import AsyncStorage from '@react-native-community/async-storage';
-// const API_URL = 'http://127.0.0.1:5000'
+import FormData from 'form-data';
+import * as FileSystem from 'expo-file-system';
 
-const ExtractText = (uri) => {
-    console.log(uri)
-    let data = new FormData();
-    data.append('img', uri);
-    // url = `${API_URL}/`
 
-    axios.post('https://10.0.2.2', data, {
+const ExtractText = async (uri) => {
+    var data = new FormData();
+    data.append('img', FileSystem.readAsStringAsync(uri));
+
+    var config = {
+        method: 'post',
+        url: 'http://20.204.96.107',
         headers: {
-            'Content-Type': 'multipart/form-data'
-        }
-    })
-        // res - status: "y"/"n" , errCode: null/errorcode 
-        .then(
-            (res) => console.log(res))
+            "Content-Type": "multipart/form-data; boundary=something"
+        },
+        data: data
+    };
 
-        .catch((e) => console.log(e))
+    axios(config)
+        .then(function (response) {
+            console.log(JSON.stringify(response.data));
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
+
 }
 
 export default ExtractText

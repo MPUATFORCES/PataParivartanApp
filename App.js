@@ -10,7 +10,6 @@ import HomeScreen from './src/scenes/Home/HomeScreen';
 import SelectProofOfAddress from './src/scenes/SelectProofOfAddress/SelectProofOfAddress';
 import MobileOperatorLogin from './src/scenes/MobileOperatorLogin/MobileOperatorLogin';
 import CustomerLogin from './src/scenes/CustomerLogin/CustomerLogin';
-// import EditImage from './src/scenes/EditImage/EditImage';
 import EditAddress from './src/scenes/EditAddress/EditAddress';
 
 const styles = StyleSheet.create({
@@ -24,7 +23,7 @@ const Stack = createStackNavigator();
 const App = () => {
   console.log('App Executed')
 
-  const [isMOSignedIn, setMOSignIn] = useState(true)
+  const [isMOSignedIn, setMOSignIn] = useState(false)
   const MOSignIn = () => {
     setMOSignIn(true)
   }
@@ -39,24 +38,23 @@ const App = () => {
           <Stack.Navigator>
             <Stack.Screen
               options={{ headerLargeTitle: true }}
+              name="Home"
+              component={HomeScreen}
+            />
+            <Stack.Screen
+              options={{ headerLargeTitle: true }}
               name="Customer Login"
               component={CustomerLogin}
             />
             <Stack.Screen
               options={{ headerLargeTitle: true }}
-              name="Edit Address"
-              component={EditAddress}
-            />
-            <Stack.Screen
-              options={{ headerLargeTitle: true }}
-              name="Home"
-              component={HomeScreen}
-            />
-
-            <Stack.Screen
-              options={{ headerLargeTitle: true }}
               name="Update Address"
               component={SelectProofOfAddress}
+            />
+            <Stack.Screen
+              options={{ headerLargeTitle: true }}
+              name="Edit Address"
+              component={EditAddress}
             />
           </Stack.Navigator>
         ) : (

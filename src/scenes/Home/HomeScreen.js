@@ -48,7 +48,7 @@ const HomeScreen = ({ navigation }) => {
                 style={styles.image}
             />
             <TouchableOpacity
-                onPress={() => navigation.navigate("Update Address")}
+                onPress={() => navigation.navigate("Customer Login")}
                 style={styles.button}
             >
                 <Text

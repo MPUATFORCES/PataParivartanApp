@@ -4,7 +4,7 @@ import { Camera } from 'expo-camera';
 import { YELLOW, WHITE, RED } from '../../utils/Colors'
 import ExtractText from '../../services/ExtractText';
 
-const CameraView = ({ isItemSelected }) => {
+const CameraView = ({ isItemSelected, navigation }) => {
     const cameraRef = useRef();
     const [hasPermission, setHasPermission] = useState(null);
     const [type, setType] = useState(Camera.Constants.Type.back);
@@ -40,6 +40,7 @@ const CameraView = ({ isItemSelected }) => {
             cameraRef.current.takePictureAsync()
                 .then((photo) => {
                     ExtractText(photo.uri)
+                    navigation.navigate("Edit Address")
                 })
                 .catch((e) => {
                     console.log(e)
