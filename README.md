@@ -1,6 +1,6 @@
 # PataParivartanApp
 
-## prerequisites
+## Prerequisites
 
 1. Install Node on your machine
 
